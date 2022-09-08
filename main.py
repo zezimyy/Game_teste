@@ -20,10 +20,19 @@ y_coin = randint(40, 440)
 
 relogio = pygame.time.Clock()
 
+#Pontos
+pontos = 0
+#Fonte para pontos
+fonte = pygame.font.SysFont("arial", 30, False, False)
+
 while True:
     #fps
     relogio.tick(15)
     tela.fill((0, 0, 0))
+
+    #Mensagem na tela
+    mensagem = f"pontos: {pontos}"
+    texto_formatado = fonte.render(mensagem, True, (255, 255, 255))
 
     for event in pygame.event.get():
         if event.type == QUIT:
@@ -53,5 +62,9 @@ while True:
     if player.colliderect(coin):
         x_coin = randint(40, 600)
         y_coin = randint(40, 440)
+        pontos = pontos + 1
+
+    #Mostrar msg na tela
+    tela.blit(texto_formatado, (450, 40))
 
     pygame.display.update()
